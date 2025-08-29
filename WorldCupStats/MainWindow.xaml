@@ -1,0 +1,130 @@
+﻿<Window x:Class="WorldCupStats.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorldCupStats"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="mainGrid" Margin="20,20,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="grpSettings" Header="Settings" Margin="0,0,0,20">
+            <StackPanel Margin="10,10,10,10">
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,10
+                            ">
+                    <TextBlock Name="lblChampionship" Text="Championship" VerticalAlignment="Center" Width="120"></TextBlock>
+                    <ComboBox x:Name="cmbChampionship" Width="200" Margin="10,0" SelectionChanged="cmbChampionship_SelectionChanged">
+                        <ComboBoxItem Content="Men's Championship" Tag="men"/>
+                        <ComboBoxItem Content="Women's Championship" Tag="women"/>
+                    </ComboBox>
+                    <Button x:Name="btnLoadTeams" Content="Load Teams" Padding="10,5,10,5" Click="btnLoadTeams_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                    <TextBlock Name="lblLanguage" Text="Language" VerticalAlignment="Center" Width="120"></TextBlock>
+                    <ComboBox x:Name="cmbLanguage" Width="200" Margin="10,0" SelectionChanged="cmbLanguage_SelectionChanged">
+                        <ComboBoxItem Content="English" Tag="en"/>
+                        <ComboBoxItem Content="Hrvatski" Tag="hr"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                    <TextBlock Name="lblWindowMode" Text="Window Mode" VerticalAlignment="Center" Width="120"></TextBlock>
+                    <ComboBox x:Name="cmbWindowMode" Width="200" Margin="10,0" SelectionChanged="cmbWindowMode_SelectionChanged"></ComboBox>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <Grid Grid.Row="1">
+        <GroupBox x:Name="grpTeamSelection" Header="Team selection" Margin="
+                  0,0,0,20" Grid.Row="2">
+            <StackPanel Margin="10,10,10,10">
+
+
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                    <TextBlock Name="lblSelectTeam" Text="Select team:" VerticalAlignment="Center" Width="120"/>
+                    <ComboBox x:Name="cmbTeams" Width="200" Margin="10,0" SelectionChanged="cmbTeam_SelectionChanged"/>
+                        
+                    </StackPanel>
+                
+
+
+            </StackPanel>
+        </GroupBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Opponent Selection and Match Result -->
+            <GroupBox x:Name="grpOpponentSelection" Grid.Row="0" Header="Match Selection" 
+              Margin="0,0,0,20" Visibility="Collapsed">
+                <StackPanel Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
+                        <TextBlock Name="lblSelectOpponent" Text="Select Opponent:" 
+                          VerticalAlignment="Center" Width="120"/>
+                        <ComboBox x:Name="cmbOpponents" Width="250" Margin="10,0"
+                         SelectionChanged="cmbOpponent_SelectionChanged"/>
+                    </StackPanel>
+
+                    <!-- Match Result Display -->
+                    <Border x:Name="pnlMatchResult" Background="LightGreen" 
+                    CornerRadius="10" Padding="20" Margin="10,10,10,0"
+                    Visibility="Collapsed">
+                        <StackPanel>
+                            <TextBlock Text="Match Result" FontSize="14" FontWeight="Bold" 
+                              HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                            <TextBlock x:Name="txtMatchScore" FontSize="28" FontWeight="Bold" 
+                              HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                               Margin="0,15,0,0">
+                                <Button x:Name="btnFavoriteTeamInfo" Content="Team Info" 
+                               Padding="10,5" Margin="5,0" Click="BtnFavoriteTeamInfo_Click"/>
+                                <Button x:Name="btnOpponentTeamInfo" Content="Opponent Info" 
+                               Padding="10,5" Margin="5,0" Click="BtnOpponentTeamInfo_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Favorite Team Display -->
+            <StackPanel x:Name="pnlFavoriteTeam" Orientation="Vertical" 
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Visibility="Collapsed">
+
+                <TextBlock x:Name="txtFavoriteTeamTitle"
+                   Text="Your Favorite Team" 
+                   FontSize="20" FontWeight="Bold" 
+                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <Border Background="LightBlue" CornerRadius="10" Padding="20" 
+                HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <TextBlock x:Name="txtFavoriteTeamName" 
+                           FontSize="24" FontWeight="Bold" 
+                           HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtFavoriteTeamCode" 
+                           FontSize="16" Foreground="Gray" 
+                           HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- No Team Selected Message -->
+            <TextBlock x:Name="txtNoTeamSelected"
+               Text="Please load teams and select your favorite team to continue" 
+               HorizontalAlignment="Center" VerticalAlignment="Center" 
+               FontSize="16" Foreground="Gray"/>
+        </Grid>
+        <StatusBar Grid.Row="3">
+            <TextBlock Name="txtStatus" Text="Ready"></TextBlock>
+        </StatusBar>
+
+
+    </Grid>
+</Window>

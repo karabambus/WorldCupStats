@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" msdata:Ordinal="5" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  <!-- Menu Items -->
+  <data name="MenuFiles" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="MenuExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="MenuHelp" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>About Program</value>
+  </data>
+  
+  <!-- Main Form Labels -->
+  <data name="LabelSelectTeam" xml:space="preserve">
+    <value>Select Team:</value>
+  </data>
+  <data name="ButtonLoadPlayers" xml:space="preserve">
+    <value>Load Players</value>
+  </data>
+  <data name="GroupFavorites" xml:space="preserve">
+    <value>Favorite Players</value>
+  </data>
+  <data name="GroupOthers" xml:space="preserve">
+    <value>Other Players</value>
+  </data>
+  <data name="StatusReady" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="StatusLoading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  
+  <!-- Ranking Buttons -->
+  <data name="ButtonRankings" xml:space="preserve">
+    <value>Rankings</value>
+  </data>
+  <data name="ButtonRankingsAttendance" xml:space="preserve">
+    <value>Attendance Rankings</value>
+  </data>
+  
+  <!-- Common Buttons -->
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ButtonOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  
+  <!-- Settings Form -->
+  <data name="ChampionshipLabel" xml:space="preserve">
+    <value>Championship:</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  
+  <!-- Messages -->
+  <data name="MessageSelectTeam" xml:space="preserve">
+    <value>Please select a team first.</value>
+  </data>
+  <data name="MessageLoadingError" xml:space="preserve">
+    <value>Error loading data. Please try again.</value>
+  </data>
+  <data name="MessageExitConfirm" xml:space="preserve">
+    <value>Are you sure you want to exit?</value>
+  </data>
+
+<data name="MessagePlayerAlreadyFavorite" xml:space="preserve">
+    <value>Player is already a favorite!</value>
+</data>
+<data name="MessageMaxFavoritesReached" xml:space="preserve">
+    <value>Maximum 3 favorites allowed!</value>
+</data>
+<data name="MessagePlayerNotFavorite" xml:space="preserve">
+    <value>Player is not a favorite!</value>
+</data>
+<data name="MessageInfoTitle" xml:space="preserve">
+    <value>Info</value>
+</data>
+  
+  <!-- Initial Settings Form -->
+  <data name="RadioButtonMen" xml:space="preserve">
+    <value>Men's Championship</value>
+  </data>
+  <data name="RadioButtonWomen" xml:space="preserve">
+    <value>Women's Championship</value>
+  </data>
+  <data name="GroupBoxChampionship" xml:space="preserve">
+    <value>Championship Type</value>
+  </data>
+  <data name="GroupBoxLanguage" xml:space="preserve">
+    <value>Language / Jezik</value>
+  </data>
+  <data name="RadioButtonEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="RadioButtonCroatian" xml:space="preserve">
+    <value>Hrvatski</value>
+  </data>
+  <data name="GroupBoxDataSource" xml:space="preserve">
+    <value>Data Source</value>
+  </data>
+  <data name="RadioButtonAPI" xml:space="preserve">
+    <value>Online API</value>
+  </data>
+  <data name="RadioButtonJsonFiles" xml:space="preserve">
+    <value>Local JSON Files</value>
+  </data>
+  <data name="CheckBoxShowImages" xml:space="preserve">
+    <value>Show player images</value>
+  </data>
+  <data name="CheckBoxAutoSave" xml:space="preserve">
+    <value>Auto-save settings</value>
+  </data>
+  <data name="CheckBoxUseCache" xml:space="preserve">
+    <value>Use data cache</value>
+  </data>
+  <data name="ButtonReset" xml:space="preserve">
+    <value>Reset to Default</value>
+  </data>
+  <data name="ButtonExport" xml:space="preserve">
+    <value>Export Settings</value>
+  </data>
+  <data name="ButtonImport" xml:space="preserve">
+    <value>Import Settings</value>
+  </data>
+  
+  <!-- Settings Form Title -->
+  <data name="SettingsFormTitle" xml:space="preserve">
+    <value>Initial Settings</value>
+  </data>
+
+<data name="StatusLanguageChanged" xml:space="preserve">
+    <value>Language changed successfully</value>
+</data>
+<data name="WindowModeLabel" xml:space="preserve">
+    <value>Window Mode:</value>
+</data>
+<data name="WindowModeNormal" xml:space="preserve">
+    <value>Normal</value>
+</data>
+<data name="WindowModeMaximized" xml:space="preserve">
+    <value>Maximized</value>
+</data>
+<data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Full Screen</value>
+</data>
+  
+</root>

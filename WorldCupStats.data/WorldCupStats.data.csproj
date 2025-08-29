@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="NewFolder1\**" />
+    <Compile Remove="NewFolder2\**" />
+    <EmbeddedResource Remove="NewFolder1\**" />
+    <EmbeddedResource Remove="NewFolder2\**" />
+    <None Remove="NewFolder1\**" />
+    <None Remove="NewFolder2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Group.cs" />
+    <Compile Remove="Models\Match.cs" />
+    <Compile Remove="Models\MatchEvent.cs" />
+    <Compile Remove="Models\Player.cs" />
+    <Compile Remove="Models\Team.cs" />
+    <Compile Remove="Models\TeamScore.cs" />
+    <Compile Remove="Models\TeamStatistics.cs" />
+    <Compile Remove="Models\TeamWithStats.cs" />
+    <Compile Remove="Models\Weather.cs" />
+    <Compile Remove="Services\PlayerService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Image\Players\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\WorldCupRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WorldCupRes.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\WorldCupRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WorldCupRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\men\matches.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\men\teams.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\women\matches.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\women\teams.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
