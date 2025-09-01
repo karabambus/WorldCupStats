@@ -20,6 +20,7 @@ namespace WorldCupStats
 {
     public partial class MainWindow : Window
     {
+        private Match currentMatch; // Add this field
         private Teams selectedFavoriteTeam;
         private Teams selectedOpponentTeam;
         private List<Match> teamMatches;
@@ -30,6 +31,11 @@ namespace WorldCupStats
             InitializeComponent();
             InitializeServices();
             LoadSettings();
+
+            // Add keyboard handling
+            this.KeyDown += MainWindow_KeyDown;
+            this.Focusable = true;
+
         }
         // settings methods
 
@@ -37,6 +43,8 @@ namespace WorldCupStats
         {
             try
             {
+                // Initialize window mode ComboBox FIRST
+                InitializeWindowModeComboBox();
                 // Load current settings from setting manage
                 var championship = SettingsManager.GetChampionship() ?? "men";
                 var language = SettingsManager.GetLanguage() ?? "en";
@@ -68,27 +76,53 @@ namespace WorldCupStats
             }
         }
 
+        private void InitializeWindowModeComboBox()
+        {
+            cmbWindowMode.Items.Clear();
+            cmbWindowMode.Items.Add(new ComboBoxItem { Content = "Normal (800x600)", Tag = "normal" });
+            cmbWindowMode.Items.Add(new ComboBoxItem { Content = "Large (1200x800)", Tag = "large" });
+            cmbWindowMode.Items.Add(new ComboBoxItem { Content = "Extra Large (1600x1000)", Tag = "xlarge" });
+        }
+
         private void ApplyWindowMode(string windowMode)
         {
             switch (windowMode?.ToLower())
             {
-                case "maximized":
-                    this.WindowState = WindowState.Maximized;
+                case "large":
+                    this.WindowState = WindowState.Normal;
                     this.WindowStyle = WindowStyle.SingleBorderWindow;
+                    this.Width = 1200;
+                    this.Height = 800;
+                    this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     break;
-                case "fullscreen":
-                    this.WindowStyle = WindowStyle.None;
-                    this.WindowState = WindowState.Maximized;
+                case "xlarge":
+                    this.WindowState = WindowState.Normal;
+                    this.WindowStyle = WindowStyle.SingleBorderWindow;
+                    this.Width = 1600;
+                    this.Height = 1000;
+                    this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     break;
                 default: // "normal"
                     this.WindowState = WindowState.Normal;
                     this.WindowStyle = WindowStyle.SingleBorderWindow;
+                    this.Width = 800;
+                    this.Height = 600;
+                    this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     break;
             }
         }
 
         private void SetComboBoxSelection(ComboBox comboBox, string tagValue)
         {
+            // Handle window mode combo box initialization
+            if (comboBox == cmbWindowMode && comboBox.Items.Count == 0)
+            {
+                cmbWindowMode.Items.Clear();
+                cmbWindowMode.Items.Add(new ComboBoxItem { Content = LocalizationManager.GetString("WindowModeNormal"), Tag = "normal" });
+                cmbWindowMode.Items.Add(new ComboBoxItem { Content = LocalizationManager.GetString("WindowModeMaximized"), Tag = "large" });
+                cmbWindowMode.Items.Add(new ComboBoxItem { Content = LocalizationManager.GetString("WindowModeFullScreen"), Tag = "xlarge" });
+            }
+
             foreach (ComboBoxItem item in comboBox.Items)
             {
                 if (item.Tag?.ToString() == tagValue)
@@ -232,22 +266,29 @@ namespace WorldCupStats
             if (selectedFavoriteTeam == null || selectedOpponentTeam == null) return;
 
             // Find the match between these two teams
-            var match = teamMatches.FirstOrDefault(m =>
+            currentMatch = teamMatches.FirstOrDefault(m =>
                 (m.HomeTeam.Code == selectedFavoriteTeam.FifaCode &&
                  m.AwayTeam.Code == selectedOpponentTeam.FifaCode) ||
                 (m.AwayTeam.Code == selectedFavoriteTeam.FifaCode &&
                  m.HomeTeam.Code == selectedOpponentTeam.FifaCode));
 
-            if (match != null)
+            if (currentMatch != null)
             {
                 pnlMatchResult.Visibility = Visibility.Visible;
 
                 // Display as "HOME_GOALS : AWAY_GOALS"
-                txtMatchScore.Text = $"{match.HomeTeam.Goals} : {match.AwayTeam.Goals}";
+                txtMatchScore.Text = $"{currentMatch.HomeTeam.Goals} : {currentMatch.AwayTeam.Goals}";
 
                 // Update button content with team names
                 btnFavoriteTeamInfo.Content = $"{selectedFavoriteTeam.Country} Info";
                 btnOpponentTeamInfo.Content = $"{selectedOpponentTeam.Country} Info";
+
+                // Show lineup button if statistics are available
+                if (currentMatch.HomeTeamStatistics?.StartingEleven != null &&
+                    currentMatch.AwayTeamStatistics?.StartingEleven != null)
+                {
+                    btnViewLineup.Visibility = Visibility.Visible;
+                }
             }
         }
         private void DisplayFavoriteTeam(Teams team)
@@ -335,6 +376,12 @@ namespace WorldCupStats
             lblWindowMode.Text = LocalizationManager.GetString("WindowModeLabel");
             lblSelectTeam.Text = LocalizationManager.GetString("LabelSelectTeam");
 
+            grpOpponentSelection.Header = LocalizationManager.GetString("OpponentSelection");
+            lblSelectOpponent.Text = LocalizationManager.GetString("SelectOpponent");
+            txtFavoriteTeamTitle.Text = LocalizationManager.GetString("YourFavoriteTeam");
+            btnOpponentTeamInfo.Content = LocalizationManager.GetString("SelectOpponentButton");
+            btnFavoriteTeamInfo.Content = LocalizationManager.GetString("TeamInfo");
+
 
             // Update ComboBox items
             UpdateComboBoxItems();
@@ -355,7 +402,7 @@ namespace WorldCupStats
 
             // Language ComboBox 
 
-            // Window Mode ComboBox
+            // Window Mode ComboBox - update with localized strings
             if (cmbWindowMode.Items.Count >= 3)
             {
                 ((ComboBoxItem)cmbWindowMode.Items[0]).Content = LocalizationManager.GetString("WindowModeNormal");
@@ -369,6 +416,16 @@ namespace WorldCupStats
         private async void btnLoadTeams_Click(object sender, RoutedEventArgs e)
         {
             await LoadTeamsAsync();
+        }
+
+        private void BtnViewLineup_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentMatch != null)
+            {
+                var lineupWindow = new LineupWindow(currentMatch);
+                lineupWindow.Owner = this;
+                lineupWindow.ShowDialog();
+            }
         }
 
         private void BtnFavoriteTeamInfo_Click(object sender, RoutedEventArgs e)
@@ -412,38 +469,120 @@ namespace WorldCupStats
 
         private void cmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbLanguage.SelectedItem is ComboBoxItem selectedItem)
+            if (cmbLanguage.SelectedItem is ComboBoxItem selectedItem && e.AddedItems.Count > 0)
             {
-                string language = selectedItem.Tag.ToString();
-                LocalizationManager.SetLanguage(language);
-                SettingsManager.SetLanguage(language);
-
-                UpdateUILanguage();
-
-                txtStatus.Text = LocalizationManager.GetString("StatusLanguageChanged");
+                if (ConfirmSettingsChange("language"))
+                {
+                    string language = selectedItem.Tag.ToString();
+                    LocalizationManager.SetLanguage(language);
+                    SettingsManager.SetLanguage(language);
+                    UpdateUILanguage();
+                    txtStatus.Text = LocalizationManager.GetString("StatusLanguageChanged");
+                }
+                else
+                {
+                    // Revert selection without triggering event
+                    cmbLanguage.SelectionChanged -= cmbLanguage_SelectionChanged;
+                    var currentLanguage = SettingsManager.GetLanguage();
+                    SetComboBoxSelection(cmbLanguage, currentLanguage);
+                    cmbLanguage.SelectionChanged += cmbLanguage_SelectionChanged;
+                }
             }
         }
 
         private void cmbWindowMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("todo.", "Info", MessageBoxButton.OK, MessageBoxImage.Information); 
+            if (cmbWindowMode.SelectedItem is ComboBoxItem selectedItem && selectedItem.Tag != null && e.AddedItems.Count > 0)
+            {
+                if (ConfirmSettingsChange("window mode"))
+                {
+                    string windowMode = selectedItem.Tag.ToString();
+                    SettingsManager.SetWindowMode(windowMode);
+                    ApplyWindowMode(windowMode);
+                    txtStatus.Text = $"Window mode changed to: {selectedItem.Content}";
+                }
+                else
+                {
+                    // Revert selection
+                    cmbWindowMode.SelectionChanged -= cmbWindowMode_SelectionChanged;
+                    var currentMode = SettingsManager.GetWindowMode();
+                    SetComboBoxSelection(cmbWindowMode, currentMode);
+                    cmbWindowMode.SelectionChanged += cmbWindowMode_SelectionChanged;
+                }
+            }
         }
 
         private void cmbChampionship_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbChampionship.SelectedItem is ComboBoxItem selectedItem && selectedItem.Tag != null)
+            if (cmbChampionship.SelectedItem is ComboBoxItem selectedItem && selectedItem.Tag != null && e.AddedItems.Count > 0)
             {
-                string championship = selectedItem.Tag.ToString();
-                SettingsManager.SetChampionship(championship);
+                if (ConfirmSettingsChange("championship"))
+                {
+                    string championship = selectedItem.Tag.ToString();
+                    SettingsManager.SetChampionship(championship);
 
-                // Recreate service - it will use the new championship from settings
-                _statisticsService = new StatisticsService(new FileDataRepository(SettingsManager.IsApiMode()));
+                    // Recreate service
+                    _statisticsService = new StatisticsService(new FileDataRepository(SettingsManager.IsApiMode()));
 
-                // Clear teams when championship changes
-                cmbTeams.ItemsSource = null;
-                HideFavoriteTeam();
+                    // Clear teams when championship changes
+                    cmbTeams.ItemsSource = null;
+                    HideFavoriteTeam();
+                }
+                else
+                {
+                    // Revert selection
+                    cmbChampionship.SelectionChanged -= cmbChampionship_SelectionChanged;
+                    var currentChampionship = SettingsManager.GetChampionship();
+                    SetComboBoxSelection(cmbChampionship, currentChampionship);
+                    cmbChampionship.SelectionChanged += cmbChampionship_SelectionChanged;
+                }
             }
+        }
 
+        private bool ConfirmSettingsChange(string settingType)
+        {
+            var result = MessageBox.Show(
+                LocalizationManager.GetString("ConfirmSaveSettings") ??
+                "Are you sure you want to save these settings?",
+                LocalizationManager.GetString("ConfirmTitle") ?? "Confirm Changes",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.No // Default to No
+            );
+
+            return result == MessageBoxResult.Yes;
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                // Handle ESC key for canceling operations or closing
+                if (ConfirmExit())
+                {
+                    this.Close();
+                }
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Enter)
+            {
+                // Handle Enter key - could be used for confirming current selection
+                e.Handled = true;
+            }
+        }
+
+        private bool ConfirmExit()
+        {
+            var result = MessageBox.Show(
+                LocalizationManager.GetString("ConfirmExit") ??
+                "Are you sure you want to exit the application?",
+                LocalizationManager.GetString("ConfirmExitTitle") ?? "Exit Application",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.No
+            );
+
+            return result == MessageBoxResult.Yes;
         }
     }
 }

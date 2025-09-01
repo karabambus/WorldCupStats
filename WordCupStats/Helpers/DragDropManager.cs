@@ -141,7 +141,7 @@ namespace WordCupStats.WinForms.Helpers
         {
             player.Parent?.Controls.Remove(player);
             _favoritesPanel.Controls.Add(player);
-            player.IsFavorite = true;
+            player.UpdateFavorite(true);
 
             _mainForm.SaveFavorites(); // Delegate to MainForm
             _mainForm.OnDragDropCompleted(); 
@@ -151,7 +151,7 @@ namespace WordCupStats.WinForms.Helpers
         {
             player.Parent?.Controls.Remove(player);
             _othersPanel.Controls.Add(player);
-            player.IsFavorite = false;
+            player.UpdateFavorite(false);
 
             _favoritesPanel.Controls.Remove(player); // Delegate to PlayerControl
             _mainForm.SaveFavorites(); // Delegate to MainForm

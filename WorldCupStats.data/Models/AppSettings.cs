@@ -18,7 +18,7 @@ namespace WorldCupStats.data.Models
         public List<int> FavoritePlayers { get; set; } = new List<int>();
 
         // Window settings (for WPF)
-        public string WindowMode { get; set; } = "windowed"; // "windowed" or "fullscreen"
+        public string WindowMode { get; set; } = "normal"; 
         public int WindowWidth { get; set; } = 1024;
         public int WindowHeight { get; set; } = 768;
 

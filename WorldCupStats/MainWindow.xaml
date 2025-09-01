@@ -33,7 +33,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,10">
                     <TextBlock Name="lblWindowMode" Text="Window Mode" VerticalAlignment="Center" Width="120"></TextBlock>
-                    <ComboBox x:Name="cmbWindowMode" Width="200" Margin="10,0" SelectionChanged="cmbWindowMode_SelectionChanged"></ComboBox>
+                    <ComboBox x:Name="cmbWindowMode" Width="200" Margin="10,0" SelectionChanged="cmbWindowMode_SelectionChanged">
+                        <ComboBoxItem Content="Normal (800x600)" Tag="normal"/>
+                        <ComboBoxItem Content="Large (1200x800)" Tag="large"/>
+                        <ComboBoxItem Content="Extra Large (1600x1000)" Tag="xlarge"/>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -73,7 +77,7 @@
 
                     <!-- Match Result Display -->
                     <Border x:Name="pnlMatchResult" Background="LightGreen" 
-                    CornerRadius="10" Padding="20" Margin="10,10,10,0"
+                    CornerRadius="10" Padding="10" Margin="10,10,10,0"
                     Visibility="Collapsed">
                         <StackPanel>
                             <TextBlock Text="Match Result" FontSize="14" FontWeight="Bold" 
@@ -120,6 +124,12 @@
                Text="Please load teams and select your favorite team to continue" 
                HorizontalAlignment="Center" VerticalAlignment="Center" 
                FontSize="16" Foreground="Gray"/>
+
+            <Button x:Name="btnViewLineup" Content="View Lineup"
+                    VerticalAlignment="Bottom"
+                Padding="10,5" Margin="5,0" 
+                Click="BtnViewLineup_Click"
+                Visibility="Collapsed"/>
         </Grid>
         <StatusBar Grid.Row="3">
             <TextBlock Name="txtStatus" Text="Ready"></TextBlock>

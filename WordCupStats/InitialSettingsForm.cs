@@ -20,11 +20,17 @@ namespace WordCupStats
 
             _selectedTeamCode = selectedTeamCode;
 
-            this.AcceptButton = btnSave; // Postavi AcceptButton na btnConfirm
-            this.KeyPreview = true; // Omoguæi KeyPreview da forma prima tipke prije kontrole
+            this.AcceptButton = btnSave; // Enter key triggers save
+            this.CancelButton = btnCancel; // Escape key triggers Cancel
+            this.KeyPreview = true; 
             this.KeyDown += (s, e) =>
             {
-                if (e.KeyCode == Keys.Escape)
+                if (e.KeyCode == Keys.Enter)
+                {
+                    btnSave.PerformClick(); // Trigger save
+                    e.Handled = true;
+                }
+                else if (e.KeyCode == Keys.Escape)
                 {
                     this.Close();
                 }
@@ -109,6 +115,16 @@ namespace WordCupStats
         {
             try
             {
+                // Ask for confirmation before saving
+                var confirmResult = MessageBox.Show(
+                    LocalizationManager.GetString("ConfirmSaveSettings") ??
+                    "Are you sure you want to save these settings?",
+                    LocalizationManager.GetString("ConfirmTitle") ?? "Confirm Changes",
+                    MessageBoxButtons.YesNo
+                );
+
+                if (confirmResult != DialogResult.Yes)
+                    return;
 
                 // Update settings object
                 currentSettings.Championship = rbMen.Checked ? "men" : "women";
@@ -122,24 +138,20 @@ namespace WordCupStats
                 SettingsManager.SaveSettings(currentSettings);
                 hasChanges = false;
 
-                // Close after short delay
-                var timer = new System.Windows.Forms.Timer { Interval = 1000 };
-                timer.Tick += (s, e) =>
-                {
-                    timer.Stop();
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                };
-                timer.Start();
+                // Show success message
+                MessageBox.Show(
+                    LocalizationManager.GetString("SettingsSaved") ?? "Settings saved successfully!",
+                    LocalizationManager.GetString("Success") ?? "Success",
+                    MessageBoxButtons.OK
+                );
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    $"Error saving settings: {ex.Message}",
-                    "Save Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show($"Error saving settings: {ex.Message}", "Save Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -228,7 +240,8 @@ namespace WordCupStats
             {
                 if (SettingsManager.ExportSettings(saveDialog.FileName))
                 {
-
+                    MessageBox.Show("Settings exported successfully", "Export Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

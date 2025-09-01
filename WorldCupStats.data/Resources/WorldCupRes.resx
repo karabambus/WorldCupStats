@@ -60,6 +60,7 @@
   </resheader>
   
   <!-- Menu Items -->
+<!-- Menu Items -->
   <data name="MenuFiles" xml:space="preserve">
     <value>Files</value>
   </data>
@@ -134,18 +135,18 @@
     <value>Are you sure you want to exit?</value>
   </data>
 
-<data name="MessagePlayerAlreadyFavorite" xml:space="preserve">
+  <data name="MessagePlayerAlreadyFavorite" xml:space="preserve">
     <value>Player is already a favorite!</value>
-</data>
-<data name="MessageMaxFavoritesReached" xml:space="preserve">
+  </data>
+  <data name="MessageMaxFavoritesReached" xml:space="preserve">
     <value>Maximum 3 favorites allowed!</value>
-</data>
-<data name="MessagePlayerNotFavorite" xml:space="preserve">
+  </data>
+  <data name="MessagePlayerNotFavorite" xml:space="preserve">
     <value>Player is not a favorite!</value>
-</data>
-<data name="MessageInfoTitle" xml:space="preserve">
+  </data>
+  <data name="MessageInfoTitle" xml:space="preserve">
     <value>Info</value>
-</data>
+  </data>
   
   <!-- Initial Settings Form -->
   <data name="RadioButtonMen" xml:space="preserve">
@@ -199,20 +200,154 @@
     <value>Initial Settings</value>
   </data>
 
-<data name="StatusLanguageChanged" xml:space="preserve">
+  <data name="StatusLanguageChanged" xml:space="preserve">
     <value>Language changed successfully</value>
-</data>
-<data name="WindowModeLabel" xml:space="preserve">
+  </data>
+  <data name="WindowModeLabel" xml:space="preserve">
     <value>Window Mode:</value>
-</data>
-<data name="WindowModeNormal" xml:space="preserve">
+  </data>
+  <data name="WindowModeNormal" xml:space="preserve">
     <value>Normal</value>
-</data>
-<data name="WindowModeMaximized" xml:space="preserve">
+  </data>
+  <data name="WindowModeMaximized" xml:space="preserve">
     <value>Maximized</value>
-</data>
-<data name="WindowModeFullScreen" xml:space="preserve">
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
     <value>Full Screen</value>
-</data>
-  
+  </data>
+
+  <data name="OpponentSelection" xml:space="preserve">
+    <value>Match Selection</value>
+  </data>
+  <data name="SelectOpponent" xml:space="preserve">
+    <value>Select Opponent:</value>
+  </data>
+  <data name="MatchResult" xml:space="preserve">
+    <value>Match Result</value>
+  </data>
+  <data name="TeamInfo" xml:space="preserve">
+    <value>Team Info</value>
+  </data>
+  <data name="OpponentInfo" xml:space="preserve">
+    <value>Opponent Info</value>
+  </data>
+  <data name="TeamInformation" xml:space="preserve">
+    <value>Team Information</value>
+  </data>
+  <data name="GamesPlayed" xml:space="preserve">
+    <value>Games Played:</value>
+  </data>
+  <data name="Wins" xml:space="preserve">
+    <value>Wins:</value>
+  </data>
+  <data name="Losses" xml:space="preserve">
+    <value>Losses:</value>
+  </data>
+  <data name="Draws" xml:space="preserve">
+    <value>Draws:</value>
+  </data>
+  <data name="GoalsFor" xml:space="preserve">
+    <value>Goals For:</value>
+  </data>
+  <data name="GoalsAgainst" xml:space="preserve">
+    <value>Goals Against:</value>
+  </data>
+  <data name="GoalDifferential" xml:space="preserve">
+    <value>Goal Differential:</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="YourFavoriteTeam" xml:space="preserve">
+    <value>Your Favorite Team</value>
+  </data>
+  <data name="SelectOpponentButton" xml:space="preserve">
+    <value>Select Opponent</value>
+  </data>
+
+  <!-- Additional confirmation dialogs and error messages -->
+  <data name="ConfirmSaveSettings" xml:space="preserve">
+    <value>Are you sure you want to save these settings?</value>
+  </data>
+  <data name="ConfirmTitle" xml:space="preserve">
+    <value>Confirm Changes</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Settings saved successfully!</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="ConfirmExit" xml:space="preserve">
+    <value>Are you sure you want to exit the application?</value>
+  </data>
+  <data name="ConfirmExitTitle" xml:space="preserve">
+    <value>Exit Application</value>
+  </data>
+  <data name="ConfirmReset" xml:space="preserve">
+    <value>Are you sure you want to reset all settings to defaults?\nThis action cannot be undone.</value>
+  </data>
+  <data name="ResetTitle" xml:space="preserve">
+    <value>Reset Settings</value>
+  </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>You have unsaved changes. Do you want to save them?</value>
+  </data>
+  <data name="UnsavedChangesTitle" xml:space="preserve">
+    <value>Unsaved Changes</value>
+  </data>
+
+  <!-- Player Actions -->
+  <data name="PlayerDetails" xml:space="preserve">
+    <value>Player Details</value>
+  </data>
+  <data name="PlayerName" xml:space="preserve">
+    <value>Player:</value>
+  </data>
+  <data name="PlayerNumber" xml:space="preserve">
+    <value>Number:</value>
+  </data>
+  <data name="PlayerPosition" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="TeamCaptain" xml:space="preserve">
+    <value>Team Captain</value>
+  </data>
+  <data name="ChangePlayerImage" xml:space="preserve">
+    <value>Would you like to change the player's image?</value>
+  </data>
+  <data name="SelectPlayerImage" xml:space="preserve">
+    <value>Select Player Image</value>
+  </data>
+  <data name="ImageUpdatedSuccessfully" xml:space="preserve">
+    <value>Player image updated successfully!</value>
+  </data>
+  <data name="ErrorUpdatingImage" xml:space="preserve">
+    <value>Error updating image:</value>
+  </data>
+
+  <!-- Context Menu -->
+  <data name="AddToFavorites" xml:space="preserve">
+    <value>Add to Favorites</value>
+  </data>
+  <data name="RemoveFromFavorites" xml:space="preserve">
+    <value>Remove from Favorites</value>
+  </data>
+  <data name="SetPlayerImage" xml:space="preserve">
+    <value>Set Player Image...</value>
+  </data>
+  <data name="RemovePlayerImage" xml:space="preserve">
+    <value>Remove Player Image</value>
+  </data>
+
+  <!-- Error Messages -->
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
 </root>

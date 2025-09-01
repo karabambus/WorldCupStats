@@ -115,11 +115,12 @@ namespace WorldCupStats.data.Helpers
 
         public static void SetWindowMode(string windowMode)
         {
-            if (windowMode != null && windowMode != "fullscreen" && windowMode != "maximized")
+            if (windowMode != "normal" && windowMode != "large" && windowMode != "xlarge")
             {
-                throw new ArgumentException("Window mode must be 'fullscreen' or 'maximized' or null");
+                windowMode = "normal"; // Default to normal if invalid
             }
-            LoadSettings().WindowMode = windowMode;
+
+            UpdateSetting(s => s.WindowMode = windowMode);
         }
 
         // Set championship

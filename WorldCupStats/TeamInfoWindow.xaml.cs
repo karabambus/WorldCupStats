@@ -35,9 +35,6 @@ namespace WorldCupStats.WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Start animation
-            Storyboard sb = (Storyboard)this.Resources["WindowAnimation"];
-            sb.Begin();
         }
 
         private async void LoadTeamStatisticsAsync()

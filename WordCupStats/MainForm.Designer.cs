@@ -217,6 +217,7 @@ namespace WordCupStats.WinForms
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
             Text = "World Cup Stats";
+            FormClosing += MainForm_FormClosing;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             grpFavorites.ResumeLayout(false);

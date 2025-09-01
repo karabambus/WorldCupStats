@@ -96,7 +96,7 @@ namespace WordCupStats.WinForms
             {
                 isDragging = true;
                 dragStartPoint = e.Location;
-
+                
                 // feedback
                 this.BackColor = Color.LightGray;
                 this.Cursor = Cursors.Hand;
@@ -116,6 +116,13 @@ namespace WordCupStats.WinForms
 
             // Postavi default sliku ako nema
             // pbImage.Image = Image.FromFile("default-player.png");
+        }
+
+        public void UpdateFavorite(bool isFavorite)
+        {
+            IsFavorite = isFavorite;
+            pbStar.Visible = isFavorite;
+            UpdateVisualState();
         }
 
         public void SetPlayerImage(String imagePath)

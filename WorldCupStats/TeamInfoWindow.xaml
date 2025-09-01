@@ -8,16 +8,52 @@
         Title="TeamInfoWindow" Height="450" Width="400"
         WindowStartupLocation="CenterOwner"
         Loaded="Window_Loaded">
+
     <Window.Resources>
-        <Storyboard x:Key="WindowAnimation">
-            <!-- to do-->
+        <!-- Opening Animation Storyboard -->
+        <Storyboard x:Key="OpeningAnimation">
+            <!-- Fade In -->
+            <DoubleAnimation Storyboard.TargetName="mainPanel"
+                           Storyboard.TargetProperty="Opacity"
+                           From="0" To="1"
+                           Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <!-- Scale Animation -->
+            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                           Storyboard.TargetProperty="ScaleX"
+                           From="0.8" To="1"
+                           Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                           Storyboard.TargetProperty="ScaleY"
+                           From="0.8" To="1"
+                           Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
         </Storyboard>
     </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource OpeningAnimation}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Grid>
         <Border x:Name="mainPanel" Background="White" CornerRadius="5" Margin="20"
-                RenderTransformOrigin="0.5,0.5">
+                RenderTransformOrigin="0.5,0.5" Opacity="0">
             <Border.RenderTransform>
-                <ScaleTransform/>
+                <ScaleTransform x:Name="ScaleTransform" ScaleX="0.8" ScaleY="0.8"/>
             </Border.RenderTransform>
 
             <StackPanel Margin="20">
@@ -67,6 +103,5 @@
                        HorizontalAlignment="Center" Click="BtnClose_Click"/>
             </StackPanel>
         </Border>
-        
     </Grid>
 </Window>

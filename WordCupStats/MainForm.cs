@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using System.IO;
 using Accessibility;
 using WordCupStats.WinForms.Helpers;
+using System.Numerics;
 
 
 namespace WordCupStats.WinForms
@@ -100,7 +101,7 @@ namespace WordCupStats.WinForms
             btnLoadPlayers.Click += btnLoadPlayers_Click;
         }
 
-    
+
 
         public void SaveFavorites()
         {
@@ -147,20 +148,20 @@ namespace WordCupStats.WinForms
 
             var contextMenu = new ContextMenuStrip();
 
-            //if (playerControl.IsFavorite)
-            //{
-            //    // if favorite, offer removal option
-            //    var removeItem = new ToolStripMenuItem("Ukloni iz favorita");
-            //    removeItem.Click += (s, e) => MovePlayerToOthers(playerControl);
-            //    contextMenu.Items.Add(removeItem);
-            //}
-            //else
-            //{
-            //    // If not favorite, offer add option
-            //    var addItem = new ToolStripMenuItem("Dodaj u favorite");
-            //    addItem.Click += (s, e) => MovePlayerToFavorites(playerControl);
-            //    contextMenu.Items.Add(addItem);
-            //}
+            if (playerControl.IsFavorite)
+            {
+                // if favorite, offer removal option
+                var removeItem = new ToolStripMenuItem("Ukloni iz favorita");
+                removeItem.Click += (s, e) => MovePlayerToOthers(playerControl);
+                contextMenu.Items.Add(removeItem);
+            }
+            else
+            {
+                // If not favorite, offer add option
+                var addItem = new ToolStripMenuItem("Dodaj u favorite");
+                addItem.Click += (s, e) => MovePlayerToFavorites(playerControl);
+                contextMenu.Items.Add(addItem);
+            }
 
             contextMenu.Items.Add(new ToolStripSeparator());
 
@@ -176,6 +177,16 @@ namespace WordCupStats.WinForms
 
             playerControl.ContextMenuStrip = contextMenu;
 
+        }
+
+        private void MovePlayerToOthers(PlayerControl playerControl)
+        {
+            playerControl.Parent?.Controls.Remove(playerControl);
+            pnlOthers.Controls.Add(playerControl);
+            playerControl.UpdateFavorite(false);
+
+            pnlFavorites.Controls.Remove(playerControl); // Delegate to PlayerControl
+            SaveFavorites(); // Delegate to MainForm
         }
 
         private void PlayerControl_MouseDown(object sender, MouseEventArgs e)
@@ -197,7 +208,7 @@ namespace WordCupStats.WinForms
                 }
                 else
                 {
-                    // Single player drag (your existing logic)
+                    // Single player drag 
                     playerControl.DoDragDrop(playerControl, DragDropEffects.Move);
                 }
             }
@@ -286,7 +297,7 @@ namespace WordCupStats.WinForms
             }
 
             // set as favorite
-            playerControl.IsFavorite = true;
+            playerControl.UpdateFavorite(true);
             playerControl.BackColor = Color.LightYellow;
 
             // add to favorites panel
@@ -330,7 +341,7 @@ namespace WordCupStats.WinForms
 
         private void LoadSettings()
         {
-           SettingsManager.LoadSettings();
+            SettingsManager.LoadSettings();
             this.Text = $"World Cup Stats - {SettingsManager.GetChampionship().ToUpper()}, " +
                 $"{SettingsManager.GetFavoriteTeam}, " +
                 $"{SettingsManager.GetLanguage}";
@@ -638,6 +649,22 @@ namespace WordCupStats.WinForms
             using (var rankingsForm = new AttendanceRankingsForm(SettingsManager.GetChampionship()))
             {
                 rankingsForm.ShowDialog();
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show(
+            LocalizationManager.GetString("ConfirmExit") ??
+            "Are you sure you want to exit the application?",
+            LocalizationManager.GetString("ConfirmExitTitle") ?? "Exit Application",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question
+    );
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true; // Cancel the form closing
             }
         }
     }

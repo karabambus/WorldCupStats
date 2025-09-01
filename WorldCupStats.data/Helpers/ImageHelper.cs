@@ -58,24 +58,6 @@ namespace WorldCupStats.data.Helpers
             return destPath;
         }
 
-        private static void CopyImage(string sourceImagePath, string destPath)
-        {
-            // Copy and check format
-            if (File.Exists(sourceImagePath))
-            {
-                // If it's already a JPG, just copy
-                if (Path.GetExtension(sourceImagePath).ToLower() == ".jpg" ||
-                    Path.GetExtension(sourceImagePath).ToLower() == ".jpeg")
-                {
-                    File.Copy(sourceImagePath, destPath, true);
-                }
-                else
-                {
-                    throw new NotSupportedException("Only JPG images are supported.");
-                }
-            }
-        }
-
         // Remove player image file
         public static bool DeletePlayerImageFile(string imagePath)
         {
@@ -91,6 +73,24 @@ namespace WorldCupStats.data.Helpers
             catch
             {
                 return false;
+            }
+        }
+
+        private static void CopyImage(string sourceImagePath, string destPath)
+        {
+            // Copy and check format
+            if (File.Exists(sourceImagePath))
+            {
+                // If it's already a JPG, just copy
+                if (Path.GetExtension(sourceImagePath).ToLower() == ".jpg" ||
+                    Path.GetExtension(sourceImagePath).ToLower() == ".jpeg")
+                {
+                    File.Copy(sourceImagePath, destPath, true);
+                }
+                else
+                {
+                    throw new NotSupportedException("Only JPG images are supported.");
+                }
             }
         }
 

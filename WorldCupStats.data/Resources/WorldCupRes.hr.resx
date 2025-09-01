@@ -73,7 +73,7 @@
     <value>Pomoć</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
-    <value>O Programu</value>
+    <value>O programu</value>
   </data>
   
   <!-- Main Form Labels -->
@@ -90,7 +90,7 @@
     <value>Ostali igrači</value>
   </data>
   <data name="StatusReady" xml:space="preserve">
-    <value>Spreman</value>
+    <value>Spremno</value>
   </data>
   <data name="StatusLoading" xml:space="preserve">
     <value>Učitavanje...</value>
@@ -101,7 +101,7 @@
     <value>Rang liste</value>
   </data>
   <data name="ButtonRankingsAttendance" xml:space="preserve">
-    <value>Rang lista posjećenosti</value>
+    <value>Rang liste posjećenosti</value>
   </data>
   
   <!-- Common Buttons -->
@@ -125,13 +125,26 @@
   
   <!-- Messages -->
   <data name="MessageSelectTeam" xml:space="preserve">
-    <value>Molimo prvo odaberite tim.</value>
+    <value>Molimo odaberite tim prvo.</value>
   </data>
   <data name="MessageLoadingError" xml:space="preserve">
-    <value>Greška prilikom učitavanja podataka. Pokušajte ponovo.</value>
+    <value>Greška pri učitavanju podataka. Molimo pokušajte ponovno.</value>
   </data>
   <data name="MessageExitConfirm" xml:space="preserve">
     <value>Jeste li sigurni da se želite zatvoriti?</value>
+  </data>
+
+  <data name="MessagePlayerAlreadyFavorite" xml:space="preserve">
+    <value>Igrač je već u favoritima!</value>
+  </data>
+  <data name="MessageMaxFavoritesReached" xml:space="preserve">
+    <value>Maksimalno 3 favorita dozvoljeno!</value>
+  </data>
+  <data name="MessagePlayerNotFavorite" xml:space="preserve">
+    <value>Igrač nije u favoritima!</value>
+  </data>
+  <data name="MessageInfoTitle" xml:space="preserve">
+    <value>Informacija</value>
   </data>
   
   <!-- Initial Settings Form -->
@@ -142,7 +155,7 @@
     <value>Žensko prvenstvo</value>
   </data>
   <data name="GroupBoxChampionship" xml:space="preserve">
-    <value>Tip prvenstva</value>
+    <value>Vrsta prvenstva</value>
   </data>
   <data name="GroupBoxLanguage" xml:space="preserve">
     <value>Jezik / Language</value>
@@ -172,7 +185,7 @@
     <value>Koristi cache podataka</value>
   </data>
   <data name="ButtonReset" xml:space="preserve">
-    <value>Vrati na zadano</value>
+    <value>Vrati na zadane vrijednosti</value>
   </data>
   <data name="ButtonExport" xml:space="preserve">
     <value>Izvezi postavke</value>
@@ -186,33 +199,155 @@
     <value>Početne postavke</value>
   </data>
 
-<data name="MessagePlayerAlreadyFavorite" xml:space="preserve">
-    <value>Igrač je već u favoritima!</value>
-</data>
-<data name="MessageMaxFavoritesReached" xml:space="preserve">
-    <value>Maksimalno 3 favorita dozvoljeno!</value>
-</data>
-<data name="MessagePlayerNotFavorite" xml:space="preserve">
-    <value>Igrač nije u favoritima!</value>
-</data>
-<data name="MessageInfoTitle" xml:space="preserve">
-    <value>Informacija</value>
-</data>
-
-<data name="StatusLanguageChanged" xml:space="preserve">
+  <data name="StatusLanguageChanged" xml:space="preserve">
     <value>Jezik uspješno promijenjen</value>
-</data>
-<data name="WindowModeLabel" xml:space="preserve">
+  </data>
+  <data name="WindowModeLabel" xml:space="preserve">
     <value>Način prozora:</value>
-</data>
-<data name="WindowModeNormal" xml:space="preserve">
-    <value>Normalno</value>
-</data>
-<data name="WindowModeMaximized" xml:space="preserve">
-    <value>Uvećano</value>
-</data>
-<data name="WindowModeFullScreen" xml:space="preserve">
-    <value>Cijeli ekran</value>
-</data>
+  </data>
+  <data name="WindowModeNormal" xml:space="preserve">
+    <value>Normalan</value>
+  </data>
+  <data name="WindowModeMaximized" xml:space="preserve">
+    <value>Maksimiziran</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Puni ekran</value>
+  </data>
 
+  <data name="OpponentSelection" xml:space="preserve">
+    <value>Odabir utakmice</value>
+  </data>
+  <data name="SelectOpponent" xml:space="preserve">
+    <value>Odaberite protivnika:</value>
+  </data>
+  <data name="MatchResult" xml:space="preserve">
+    <value>Rezultat utakmice</value>
+  </data>
+  <data name="TeamInfo" xml:space="preserve">
+    <value>Informacije o timu</value>
+  </data>
+  <data name="OpponentInfo" xml:space="preserve">
+    <value>Informacije o protivniku</value>
+  </data>
+  <data name="TeamInformation" xml:space="preserve">
+    <value>Informacije o timu</value>
+  </data>
+  <data name="GamesPlayed" xml:space="preserve">
+    <value>Odigrane utakmice:</value>
+  </data>
+  <data name="Wins" xml:space="preserve">
+    <value>Pobjede:</value>
+  </data>
+  <data name="Losses" xml:space="preserve">
+    <value>Porazi:</value>
+  </data>
+  <data name="Draws" xml:space="preserve">
+    <value>Neriješeni:</value>
+  </data>
+  <data name="GoalsFor" xml:space="preserve">
+    <value>Golovi za:</value>
+  </data>
+  <data name="GoalsAgainst" xml:space="preserve">
+    <value>Golovi protiv:</value>
+  </data>
+  <data name="GoalDifferential" xml:space="preserve">
+    <value>Gol razlika:</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zatvori</value>
+  </data>
+  <data name="YourFavoriteTeam" xml:space="preserve">
+    <value>Vaš omiljeni tim</value>
+  </data>
+  <data name="SelectOpponentButton" xml:space="preserve">
+    <value>Odaberite protivnika</value>
+  </data>
+
+  <!-- Additional confirmation dialogs and error messages -->
+  <data name="ConfirmSaveSettings" xml:space="preserve">
+    <value>Jeste li sigurni da želite spremiti ove postavke?</value>
+  </data>
+  <data name="ConfirmTitle" xml:space="preserve">
+    <value>Potvrda promjena</value>
+  </data>
+  <data name="SettingsSaved" xml:space="preserve">
+    <value>Postavke uspješno spremljene!</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Uspjeh</value>
+  </data>
+  <data name="ConfirmExit" xml:space="preserve">
+    <value>Jeste li sigurni da se želite zatvoriti aplikaciju?</value>
+  </data>
+  <data name="ConfirmExitTitle" xml:space="preserve">
+    <value>Zatvaranje aplikacije</value>
+  </data>
+  <data name="ConfirmReset" xml:space="preserve">
+    <value>Jeste li sigurni da želite vratiti sve postavke na zadane vrijednosti?\nOva radnja se ne može poništiti.</value>
+  </data>
+  <data name="ResetTitle" xml:space="preserve">
+    <value>Vraćanje postavki</value>
+  </data>
+  <data name="UnsavedChanges" xml:space="preserve">
+    <value>Imate nespremljene promjene. Želite li ih spremiti?</value>
+  </data>
+  <data name="UnsavedChangesTitle" xml:space="preserve">
+    <value>Nespremljene promjene</value>
+  </data>
+
+  <!-- Player Actions -->
+  <data name="PlayerDetails" xml:space="preserve">
+    <value>Detalji igrača</value>
+  </data>
+  <data name="PlayerName" xml:space="preserve">
+    <value>Igrač:</value>
+  </data>
+  <data name="PlayerNumber" xml:space="preserve">
+    <value>Broj:</value>
+  </data>
+  <data name="PlayerPosition" xml:space="preserve">
+    <value>Pozicija:</value>
+  </data>
+  <data name="TeamCaptain" xml:space="preserve">
+    <value>Kapetan tima</value>
+  </data>
+  <data name="ChangePlayerImage" xml:space="preserve">
+    <value>Želite li promijeniti sliku igrača?</value>
+  </data>
+  <data name="SelectPlayerImage" xml:space="preserve">
+    <value>Odaberite sliku igrača</value>
+  </data>
+  <data name="ImageUpdatedSuccessfully" xml:space="preserve">
+    <value>Slika igrača uspješno ažurirana!</value>
+  </data>
+  <data name="ErrorUpdatingImage" xml:space="preserve">
+    <value>Greška pri ažuriranju slike:</value>
+  </data>
+
+  <!-- Context Menu -->
+  <data name="AddToFavorites" xml:space="preserve">
+    <value>Dodaj u favorite</value>
+  </data>
+  <data name="RemoveFromFavorites" xml:space="preserve">
+    <value>Ukloni iz favorita</value>
+  </data>
+  <data name="SetPlayerImage" xml:space="preserve">
+    <value>Postavi sliku igrača...</value>
+  </data>
+  <data name="RemovePlayerImage" xml:space="preserve">
+    <value>Ukloni sliku igrača</value>
+  </data>
+
+  <!-- Error Messages -->
+  <data name="Error" xml:space="preserve">
+    <value>Greška</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Upozorenje</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Informacija</value>
+  </data>
+  
 </root>
